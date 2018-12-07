@@ -1,14 +1,27 @@
 <h1 align="center">Create a new article</h1>
 
 <% if @article.errors.any? %>
-<p>The following errors prevented the article from getting created:</p>
-    <ul>
-        <% @article.errors.full_messages.each do |m| %>
-            <li><%= m %></li>
-        <% end %>
-    </ul>
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-8">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <%= pluralize(@article.errors.count, "error") %>
+                        prevented this article from getting created
+                    </h2>
+                    <div class="panel-body">
+                        <ul>
+                            <% @article.errors.full_messages.each do |m| %>
+                                <li><%= m %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>    
+            </div>        
+        </div>            
+    </div>                    
 <% end %>
-
+      
 <div class="row">
     <div class="col-xs-12">
         <%= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %>
